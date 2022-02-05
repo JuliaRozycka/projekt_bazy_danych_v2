@@ -1,24 +1,20 @@
 package edu.ib.projekt_bazy_danych_v2;
 
-import javafx.scene.control.TextArea;
-
 import javax.sql.rowset.CachedRowSet;
+import javax.swing.*;
 import java.sql.*;
 
 
 public class ConnectionUtil {
     private String userName;
     private String userPassword;
-    private TextArea consoleTextArea;
-    private static final String SELECT_QUERY = "SELECT * FROM Uzytkownicy WHERE login = ? and haslo = ?";
-
+    private static final String SELECT_QUERY = "SELECT * FROM uzytkownicy WHERE login = ? and haslo = ?";
 
     private Connection conn = null;
 
-    public ConnectionUtil(String userName, String userPassword, TextArea consoleTextArea) {
+    public ConnectionUtil(String userName, String userPassword) {
         this.userName = userName;
         this.userPassword = userPassword;
-        this.consoleTextArea = consoleTextArea;
     }
 
     public void dbConnect() throws SQLException, ClassNotFoundException {
@@ -26,36 +22,32 @@ public class ConnectionUtil {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            consoleTextArea.appendText("No MySQL JDBC Driver found." + "\n");
+            JOptionPane.showMessageDialog(null, "A");
+            //consoleTextArea.appendText("No MySQL JDBC Driver found." + "\n");
             e.printStackTrace();
             throw e;
         }
-
         try {
             conn = DriverManager.getConnection(createURL());
-
         } catch (SQLException e) {
-            consoleTextArea.appendText("Connection Failed! Try again." + "\n");
+            JOptionPane.showMessageDialog(null, "Podano nieporpawny login lub hasło.");
             e.printStackTrace();
             throw e;
         }
-
     }
 
-    public void dbDisconnect() throws SQLException {
+/*    public void dbDisconnect() throws SQLException {
 
         try {
-
             if (conn != null && !conn.isClosed()) {
-
                 conn.close();
-                consoleTextArea.appendText("Connection closed. Bye!" + "\n");
-
+                JOptionPane.showMessageDialog(null, "A");
+                //consoleTextArea.appendText("Connection closed. Bye!" + "\n");
             }
         } catch (Exception e) {
             throw e;
         }
-    }
+    }*/
 
     private String createURL() {
 
@@ -72,25 +64,21 @@ public class ConnectionUtil {
         return urlSB.toString();
     }
 
-    public ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException {
+/*    public ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException {
 
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
         CachedRowSet crs;
 
         try {
-
             dbConnect();
-
             stmt = conn.prepareStatement(queryStmt);
-
             resultSet = stmt.executeQuery(queryStmt);
-
             crs = new CachedRowSetWrapper();
-
             crs.populate(resultSet);
         } catch (SQLException e) {
-            consoleTextArea.appendText("Problem occurred at executeQuery operation. \n");
+            JOptionPane.showMessageDialog(null, "A");
+            //consoleTextArea.appendText("Problem occurred at executeQuery operation. \n");
             throw e;
         } finally {
             if (resultSet != null) {
@@ -101,11 +89,10 @@ public class ConnectionUtil {
             }
             dbDisconnect();
         }
-
         return crs;
-    }
+    }*/
 
-    public  void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
+/*    public void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
 
         Statement stmt = null;
         try {
@@ -114,7 +101,8 @@ public class ConnectionUtil {
             stmt.executeUpdate(sqlStmt);
 
         } catch (SQLException e) {
-            consoleTextArea.appendText("Problem occurred at executeUpdate operation. \n");
+            JOptionPane.showMessageDialog(null, "A");
+            //consoleTextArea.appendText("Problem occurred at executeUpdate operation. \n");
             throw e;
         } finally {
             if (stmt != null) {
@@ -122,5 +110,5 @@ public class ConnectionUtil {
             }
             dbDisconnect();
         }
-    }
+    }*/
 }
