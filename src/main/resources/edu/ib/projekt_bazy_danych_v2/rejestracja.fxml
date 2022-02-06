@@ -21,84 +21,94 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
             </columnConstraints>
             <rowConstraints>
-            <RowConstraints maxHeight="238.3999755859375" minHeight="10.0" prefHeight="49.600006103515625" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="246.79999771118165" minHeight="10.0" prefHeight="208.79997253417966" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="184.7999938964844" minHeight="10.0" prefHeight="42.40002746582036" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="238.3999755859375" minHeight="10.0" prefHeight="38.200018310546874" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="246.79999771118165" minHeight="10.0" prefHeight="228.79997558593746" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="184.7999938964844" minHeight="10.0" prefHeight="33.60002441406249" vgrow="SOMETIMES" />
             </rowConstraints>
             <BorderPane.margin>
                 <Insets />
             </BorderPane.margin>
             <children>
                 <Button fx:id="btnRejestracja" mnemonicParsing="false" onAction="#btnRejestracjaClicked" text="Zarejestruj" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <VBox prefHeight="184.0" prefWidth="106.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <TextField fx:id="tfImie" />
-                  <TextField fx:id="tfNazwisko">
-                     <VBox.margin>
-                        <Insets top="7.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="tfPesel">
-                     <VBox.margin>
-                        <Insets top="7.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="tfLogin">
-                     <VBox.margin>
-                        <Insets top="7.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <PasswordField fx:id="tfHaslo">
-                     <VBox.margin>
-                        <Insets top="7.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <PasswordField fx:id="tfHaslo2">
-                     <opaqueInsets>
+                <VBox prefHeight="184.0" prefWidth="106.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <TextField fx:id="tfImie" />
+                        <TextField fx:id="tfNazwisko">
+                            <VBox.margin>
+                                <Insets top="7.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="tfPesel">
+                            <VBox.margin>
+                                <Insets top="7.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="tfNumer">
+                            <VBox.margin>
+                                <Insets top="7.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="tfLogin">
+                            <VBox.margin>
+                                <Insets top="7.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <PasswordField fx:id="tfHaslo">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <VBox.margin>
+                                <Insets top="7.0" />
+                            </VBox.margin>
+                        </PasswordField>
+                        <PasswordField fx:id="tfHaslo2">
+                            <VBox.margin>
+                                <Insets top="7.0" />
+                            </VBox.margin>
+                        </PasswordField>
+                    </children>
+                    <opaqueInsets>
                         <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="7.0" />
-                     </VBox.margin>
-                  </PasswordField>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" textAlignment="RIGHT" wrappingWidth="141.0">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" textAlignment="RIGHT" wrappingWidth="141.0">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PESEL:" textAlignment="RIGHT" wrappingWidth="141.0">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login:" textAlignment="RIGHT" wrappingWidth="141.0">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hasło:" textAlignment="RIGHT" wrappingWidth="141.0">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Powtórz hasło:" textAlignment="RIGHT" wrappingWidth="141.0">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin></Text>
-               </children>
-            </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REJESTRACJA" textAlignment="CENTER" wrappingWidth="107.43475341796875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
+                    </opaqueInsets>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PESEL:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numer telefonu:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hasło:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Powtórz hasło:" textAlignment="RIGHT" wrappingWidth="141.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin></Text>
+                    </children>
+                </VBox>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REJESTRACJA" textAlignment="CENTER" wrappingWidth="107.43475341796875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
             </children>
         </GridPane>
     </center>

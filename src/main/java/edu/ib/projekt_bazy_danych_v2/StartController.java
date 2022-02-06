@@ -1,5 +1,6 @@
 package edu.ib.projekt_bazy_danych_v2;
 
+import entity.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,29 +12,20 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+
 import java.net.URL;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class StartController {
+    public Uzytkownicy uzytkownik;
+
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-
-    @FXML
-    private Button btnZaloguj;
-
-    @FXML
-    private Button btnZarejestruj;
-
-    @FXML
-    private Button btnLogowanie;
-
-    @FXML
-    private Button btnRejestracja;
 
     @FXML
     private TextField tfImie;
@@ -46,6 +38,9 @@ public class StartController {
 
     @FXML
     private TextField tfLogin;
+
+    @FXML
+    private TextField tfNumer;
 
     @FXML
     private TextField tfHaslo;
@@ -81,15 +76,31 @@ public class StartController {
         primaryStage3.show();
     }
 
-    public void btnRejestracjaClicked(ActionEvent event) throws IOException {
+    public void btnRejestracjaClicked(ActionEvent event) throws IOException, SQLException {
+
+        //System.out.println(rs);
+
         if (Objects.equals(tfImie.getText(), "") || Objects.equals(tfNazwisko.getText(), "") ||
-                Objects.equals(tfPesel.getText(), "") || Objects.equals(tfLogin.getText(), "") ||
-                Objects.equals(tfHaslo.getText(), "") || Objects.equals(tfHaslo2.getText(), "")) {
+                Objects.equals(tfPesel.getText(), "") || Objects.equals(tfNumer.getText(), "") ||
+                Objects.equals(tfLogin.getText(), "") || Objects.equals(tfHaslo.getText(), "")) {
             JOptionPane.showMessageDialog(null, "Prosze sie poprawic i wypelnienie naprawic");
         } else if (!Objects.equals(tfHaslo.getText(), tfHaslo2.getText())) {
             JOptionPane.showMessageDialog(null, "Zjebales gosciu");
         } else {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/punkt_szczepien?useUnicode=true&characterEncoding=utf-8&serverTimezone=CET");
+            String query = "CALL addPacjent(?,?,?,?,?,?)";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1,tfLogin.getText());
+            stmt.setString(2,tfHaslo.getText());
+            stmt.setString(3,tfNumer.getText());
+            stmt.setString(4,tfPesel.getText());
+            stmt.setString(5,tfImie.getText());
+            stmt.setString(6,tfNazwisko.getText());
+
+            stmt.executeQuery();
+
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            JOptionPane.showMessageDialog(null, "Rejestracja przebiegła pomyślnie. Teraz się zaloguj i miłej zabawy XD");
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("logowanie.fxml")));
             Scene scene = new Scene(root, 400, 300);
             Stage primaryStage2 = new Stage();
@@ -102,32 +113,32 @@ public class StartController {
         if (Objects.equals(tfHas.getText(), "") || Objects.equals(tfLog.getText(), "")) {
             JOptionPane.showMessageDialog(null, "Pusty masz leb jak te pola cwelu");
         } else {
-            //((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
-
             dbUtil = new ConnectionUtil(tfLog.getText(), tfHas.getText());
             dbUtil.dbConnect();
 
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/punkt_szczepien?useUnicode=true&characterEncoding=utf-8&serverTimezone=CET");
+            String sql = "SELECT * FROM Pracownicy WHERE login='" + tfLog.getText() + "'";
+            Statement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            String data = tfLog.getText();
 
-            //rozroznienie uzytkownika i admina
-            //wywalanie okna poprzedniego
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("panel_uzytkownika.fxml")));
-            Scene scene = new Scene(root, 400, 300);
-            Stage primaryStage4 = new Stage();
-            primaryStage4.setScene(scene);
-            primaryStage4.show();
+            if (rs.next()) {
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+                Parent root = FXMLLoader.load((getClass().getResource("panel_admin.fxml")));
+                Scene scene = new Scene(root, 400, 300);
+                Stage primaryStage4 = new Stage();
+                primaryStage4.setScene(scene);
+                primaryStage4.show();
+            } else {
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+                Parent root = FXMLLoader.load((getClass().getResource("panel_uzytkownika.fxml")));
+                Scene scene = new Scene(root, 400, 300);
+                //UzytkownikController.initData(uzytkownik);
+                Stage primaryStage4 = new Stage();
+                primaryStage4.setScene(scene);
+                primaryStage4.show();
+            }
         }
     }
-
-
-/*    public void login(ActionEvent event) throws SQLException, ClassNotFoundException{
-        dbUtil = new ConnectionUtil(peselField.getText(), passwordField.getText(), consoleTextArea);
-
-        dbUtil.dbConnect();
-
-        consoleTextArea.appendText("Access granted for user \"" + peselField.getText() + "\"." + "\n");
-        loginButton.setDisable(true);
-    }*/
-
-
 
 }
