@@ -11,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.ArrayList;
+
 public class UzytkownikController {
 
     private ObservableList<Object> list = FXCollections.observableArrayList();
@@ -42,7 +44,11 @@ public class UzytkownikController {
         cbData.setItems(list2);
         FetchDataFromTableZapisyAdmin fetchDataFromTable2 = new FetchDataFromTableZapisyAdmin();
         fetchDataFromTable2.addData();
-        list2.addAll(Terminy.getTerms(fetchDataFromTable2.idList,fetchDataFromTable2.dataList,fetchDataFromTable2.godzinaList));
+        ArrayList listTerminy = new ArrayList<>();
+        for(int i = 0; i<fetchDataFromTable2.dataList.size();i++){
+            listTerminy.add(fetchDataFromTable2.dataList.get(i)+" "+fetchDataFromTable2.godzinaList.get(i));
+        }
+        list2.addAll(listTerminy);
 
         tcNazwa.setCellValueFactory(new PropertyValueFactory<>("nazwaSzczepienia"));
         tcProducent.setCellValueFactory(new PropertyValueFactory<>("producent"));
