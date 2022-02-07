@@ -1,5 +1,10 @@
 package edu.ib.projekt_bazy_danych_v2;
 
+import entity.Pacjenci;
+import entity.Uzytkownicy;
+import entity.WidokUzytkownika;
+import javafx.fxml.FXMLLoader;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -13,14 +18,14 @@ public class FetchDataFromTableUzyt {
 
 
 
-    public void addData() {
+    public void addData(int id_l) {
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection;
-            String sql = "SELECT * FROM widok_uzytkownika WHERE id_login LIKE '%8%';";
+            String sql = "SELECT * FROM widok_uzytkownika WHERE id_login = ".concat(String.valueOf(id_l)).concat(" ORDER BY data DESC");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/punkt_szczepien?useUnicode=true&characterEncoding=utf-8&serverTimezone=CET");
             PreparedStatement ps = connection.prepareStatement(sql);
+            System.out.println(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Integer id = Integer.valueOf(rs.getString("id_login"));

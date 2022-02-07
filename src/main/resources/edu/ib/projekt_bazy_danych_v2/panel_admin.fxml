@@ -2,54 +2,127 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ib.projekt_bazy_danych_v2.AdminController">
-   <left>
-        <GridPane BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ib.projekt_bazy_danych_v2.AdminController">
+    <left>
+        <GridPane prefHeight="600.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="385.400048828125" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="700.0" prefWidth="700.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="148.8" minHeight="0.0" prefHeight="18.400007057189942" valignment="CENTER" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="148.8" minHeight="10.0" prefHeight="62.39999294281006" valignment="CENTER" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="37.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="214.20000610351562" minHeight="10.0" prefHeight="214.20000610351562" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="148.8" minHeight="0.0" prefHeight="51.19999694824219" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="170.4" minHeight="10.0" prefHeight="72.80000305175781" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="116.59998321533203" minHeight="0.0" prefHeight="65.60001831054689" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="116.59998321533203" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="311.99998168945314" minHeight="10.0" prefHeight="311.99998168945314" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                <TableView fx:id="table" editable="true" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" GridPane.rowIndex="4">
                     <columns>
-                        <TableColumn fx:id="tcPesel" prefWidth="40.00006103515625" text="Pesel" />
-                        <TableColumn fx:id="tcImie" prefWidth="41.60003662109375" text="Imię" />
-                        <TableColumn fx:id="tcNazwisko" prefWidth="66.39996337890625" text="Nazwisko" />
-                        <TableColumn fx:id="tcNazwa" prefWidth="92.800048828125" text="Nazwa szczepienia" />
-                        <TableColumn fx:id="tcProducent" minWidth="0.0" prefWidth="51.20001220703125" text="Producent" />
-                        <TableColumn fx:id="tcData" minWidth="0.0" prefWidth="42.39996337890625" text="Data" />
-                        <TableColumn fx:id="tcGodzina" prefWidth="61.5999755859375" text="Godzina" />
+                        <TableColumn fx:id="tcPesel" prefWidth="75.99999845027924" text="Pesel" />
+                        <TableColumn fx:id="tcImie" minWidth="0.0" prefWidth="72.79999542236328" text="Imię" />
+                        <TableColumn fx:id="tcNazwisko" prefWidth="84.79998779296875" text="Nazwisko" />
+                        <TableColumn fx:id="tcNazwa" prefWidth="160.0" text="Nazwa szczepienia" />
+                        <TableColumn fx:id="tcProducent" minWidth="0.0" prefWidth="93.60003662109375" text="Producent" />
+                        <TableColumn fx:id="tcData" minWidth="0.0" prefWidth="102.39993286132812" text="Data" />
+                        <TableColumn fx:id="tcGodzina" prefWidth="107.199951171875" text="Godzina" />
                     </columns>
                 </TableView>
-                <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                    <buttons>
-                        <Button fx:id="btnArchiwum" mnemonicParsing="false" onAction="#btnArchiwumClicked" text="Archiwum" />
-                        <Button fx:id="btnOczekujace" mnemonicParsing="false" onAction="#btnOczekujaceClicked" text="Oczekujące" />
-                        <Button fx:id="btnNiezrealizowane" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#btnNiezrealizowaneClicked" text="Niezrealizowane" />
-                    </buttons>
-                    <GridPane.margin>
-                        <Insets right="35.0" />
-                    </GridPane.margin>
-                </ButtonBar>
-            <TextField fx:id="tfPesel" maxWidth="100.0" promptText="pesel" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                <HBox alignment="CENTER" prefHeight="42.0" prefWidth="700.0" GridPane.rowIndex="2">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pokaż:">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Button fx:id="btnOczekujace" mnemonicParsing="false" onAction="#btnOczekujaceClicked" text="Oczekujące">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin></Button>
+                        <Button fx:id="btnArchiwum" mnemonicParsing="false" onAction="#btnArchiwumClicked" text="Archiwum">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin></Button>
+                        <Button fx:id="btnNiezrealizowane" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#btnNiezrealizowaneClicked" text="Niezrealizowane">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin></Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="102.0" prefWidth="700.0" GridPane.rowIndex="1">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pokaż dla użytkownika:">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <TextField fx:id="tfPesel" promptText="Pesel">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                            </children>
+                            <padding>
+                                <Insets left="30.0" right="20.0" />
+                            </padding>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="130.0" prefWidth="156.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pokaż dla daty:">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <DatePicker fx:id="dpData" prefHeight="26.0" prefWidth="128.0" promptText="Data">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </DatePicker>
+                            </children>
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <Button fx:id="btnZapisy" mnemonicParsing="false" onAction="#btnZapisyClicked" prefHeight="26.0" prefWidth="146.0" text="Zarządzaj zapisami">
+                            <HBox.margin>
+                                <Insets top="14.0" />
+                            </HBox.margin></Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="37.0" prefWidth="700.0" GridPane.rowIndex="3">
+                    <children>
+                        <Button fx:id="btnOznaczTak" mnemonicParsing="false" onAction="#btnOznaczTakClicked" text="Oznacz jako zrealizowane">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnOznaczNie" mnemonicParsing="false" onAction="#btnOznaczNieClicked" text="Oznacz jako niezrealizowane">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </HBox>
             </children>
             <BorderPane.margin>
                 <Insets />
             </BorderPane.margin>
         </GridPane>
-   </left>
+    </left>
 </BorderPane>

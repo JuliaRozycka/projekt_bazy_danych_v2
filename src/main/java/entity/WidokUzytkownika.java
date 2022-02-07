@@ -10,7 +10,7 @@ import java.util.Objects;
 @Table(name = "widok_uzytkownika", schema = "punkt_szczepien", catalog = "")
 public class WidokUzytkownika {
     @Id
-    private Long id;
+    private static Long id;
 
     @Basic
     @Column(name = "id_login")
@@ -42,6 +42,9 @@ public class WidokUzytkownika {
     }
 
     public WidokUzytkownika(Integer integer, String s, String s1, String s2, String s3, Date date, Time time) {
+    }
+
+    public WidokUzytkownika() {
     }
 
     public Long getId() {

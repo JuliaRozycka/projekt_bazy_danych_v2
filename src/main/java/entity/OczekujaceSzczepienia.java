@@ -133,4 +133,17 @@ public class OczekujaceSzczepienia {
                     nazwaSzczepieniaList.get(i), producentList.get(i), dataList.get(i), godzinaList.get(i)));
         return oczek;
     }
+
+    @Override
+    public String toString() {
+        return "OczekujaceSzczepienia{" +
+                "id=" + id +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", nazwaSzczepienia='" + nazwaSzczepienia + '\'' +
+                ", producent='" + producent + '\'' +
+                ", data=" + data +
+                ", godzina=" + godzina +
+                '}';
+    }
 }

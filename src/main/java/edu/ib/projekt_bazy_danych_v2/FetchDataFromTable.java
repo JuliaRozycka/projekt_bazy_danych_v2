@@ -16,21 +16,14 @@ public class FetchDataFromTable {
     protected ArrayList<Date> dataList = new ArrayList<>();
     protected ArrayList<Time> godzinaList = new ArrayList<>();
 
-    @FXML
-    public TextField tfPesel;
-
-    public void addData(String klasa) {
+    public void addData(String klasa, String peselFlt, String dataFlt) {
         try {
+            if (dataFlt.equals("null")){
+                dataFlt="";
+            }
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection;
-            String filter;
-            if (tfPesel == null) {
-                filter = "";
-            }
-            else {
-                filter = tfPesel.getText();
-            }
-            String sql = "SELECT * FROM ".concat(klasa).concat(" WHERE pesel LIKE '%").concat(filter).concat("%' ORDER BY data DESC");
+            String sql = "SELECT * FROM ".concat(klasa).concat(" WHERE pesel LIKE '%").concat(peselFlt).concat("%' AND data LIKE '%").concat(dataFlt).concat("%' ORDER BY data DESC;");
             System.out.println(sql);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/punkt_szczepien?useUnicode=true&characterEncoding=utf-8&serverTimezone=CET");
             PreparedStatement ps = connection.prepareStatement(sql);

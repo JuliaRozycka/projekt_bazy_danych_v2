@@ -8,15 +8,15 @@ public class Uzytkownicy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int id;
+    public static int id;
     @Basic
     @Column(name = "login")
-    private String login;
+    public static String login;
     @Basic
     @Column(name = "haslo")
-    private String haslo;
+    public static String haslo;
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Uzytkownicy {
         this.id = id;
     }
 
-    public String getLogin() {
+    public static String getLogin() {
         return login;
     }
 
@@ -32,7 +32,7 @@ public class Uzytkownicy {
         this.login = login;
     }
 
-    public String getHaslo() {
+    public static String getHaslo() {
         return haslo;
     }
 
